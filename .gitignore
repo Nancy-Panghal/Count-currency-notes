@@ -47,4 +47,6 @@ yarn-error.log*
 # --- EAS ---
 .eas/
 
+
+# Editor
 .vscode/
