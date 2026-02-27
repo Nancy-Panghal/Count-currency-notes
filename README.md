@@ -1,4 +1,4 @@
-# CountNote 💵
+# Sum up corrency notes amount
 
 > Point your camera at scatterd Indian currency notes. The app counts them for you.
 
