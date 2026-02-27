@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+# CountNote 💵
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> Point your camera at scatterd Indian currency notes. The app counts them for you.
 
-## Get started
+This was a fun project! I first tried to train a vision model using EfficientNet but wasn't satisfied with the accuracy. Then I pivoted to using an API approach. You can use other vision APIs too, but **Gemini 2.5 Flash is free for limited use** and performs well on this task.
 
-1. Install dependencies
+I got the idea from my parents — they sometimes ask me to count notes and I always get confused while counting. So I built something that does it for me.
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## What it does
 
-   ```bash
-   npx expo start
-   ```
+- Opens camera immediately on launch — point at any Indian currency notes
+- Detects **all visible notes** in a single frame using Gemini's vision API
+- Shows a running total that updates with each scan
+- Keeps a **history of the last 10 scans** with timestamps, individual note breakdown, and per-scan totals
+- All history is persisted locally with AsyncStorage — survives app restarts
+- Supports denominations: ₹5, ₹10, ₹20, ₹50, ₹100, ₹200, ₹500 *(₹2000 excluded!)*
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
+```
+CountNote/
+├── app/
+│   ├── index.jsx          
+│   └── History.jsx        
+├── assets/
+│   └── images/
+│       └── icon.jpg
+├── app.json
+├── package.json
 
-```bash
-npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## Getting Started
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. Clone the repo
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+git clone https://github.com/YOUR_USERNAME/CountNote.git
+cd CountNote
+```
 
-## Join the community
+### 2. Install dependencies
 
-Join our community of developers creating universal apps.
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 3. Add your Gemini API key
+
+Get a key from [https://aistudio.google.com](https://aistudio.google.com)
+
+Then update `app/index.jsx`:
+
+
+### 4. Run the app
+
+```bash
+npx expo start
+```
+
+Scan the QR code with the **Expo Go** app on your Android or iOS device.
+
+---
+
+
+
+## Limitations
+
+- Requires internet connection (API call per scan)
+- Very crumpled or heavily worn notes may not be detected correctly
+
+
+---
+
